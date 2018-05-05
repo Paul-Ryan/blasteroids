@@ -2,16 +2,18 @@ import MovingObject from './moving_object.js';
 import Util from './util.js';
 
 const DEFAULTS = {
-  COLOR: "#e0e0e0",
+  COLOR: "#7D2E68",
   RADIUS: 10,
   SPEED: 10
 };
 
 class Asteroid extends MovingObject {
   constructor(options = {}) {
+    super(options);
     this.color = DEFAULTS.COLOR;
     this.radius = DEFAULTS.RADIUS;
     this.vel = options.vel || Util.randomVec(DEFAULTS.SPEED);
-    super(options);
   }
 }
+
+export default Asteroid;

@@ -1,17 +1,17 @@
 console.log('webpack is running');
 
 import MovingObject from './moving_object.js';
+import Asteroid from './asteroid.js';
 
   const gameScreen = document.querySelector('canvas');
   const ctx = gameScreen.getContext("2d");
 
-  const obj = new MovingObject(
-    { pos: [200, 30], vel: [10, 10], radius: 10, color: "#00FF00"}
-  );
+  // const obj = new MovingObject(
+  //   { pos: [200, 30], vel: [10, 10], radius: 10, color: "#00FF00"}
+  // );
 
-
-
-  obj.render(ctx);
+  const asteroid = new Asteroid({ pos: [300, 300] });
+  asteroid.render(ctx);
   // setInterval(() => {
   //   obj.move(ctx);
   //   obj.render(ctx);
