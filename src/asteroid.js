@@ -3,7 +3,7 @@ import Util from './util.js';
 
 const DEFAULTS = {
   COLOR: "#7D2E68",
-  RADIUS: 10,
+  RADIUS: 40,
   SPEED: 10
 };
 

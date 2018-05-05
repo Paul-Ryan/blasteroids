@@ -1,5 +1,6 @@
 console.log('webpack is running');
 
+import Game from './game.js';
 import MovingObject from './moving_object.js';
 import Asteroid from './asteroid.js';
 
@@ -16,5 +17,8 @@ import Asteroid from './asteroid.js';
   //   obj.move(ctx);
   //   obj.render(ctx);
   // }, 250);
+
+  const game = new Game();
+  game.draw(ctx);
 
 window.MovingObject = MovingObject;
