@@ -1,10 +1,10 @@
 
 class MovingObject {
-  constructor(attributesObj) {
-    this.pos = attributesObj.pos;
-    this.vel = attributesObj.vel;
-    this.radius = attributesObj.radius;
-    this.color = attributesObj.color;
+  constructor(options) {
+    this.pos = options.pos;
+    this.vel = options.vel;
+    this.radius = options.radius;
+    this.color = options.color;
   }
 
   render(ctx) {
@@ -21,6 +21,11 @@ class MovingObject {
     );
 
     ctx.fill();
+  }
+
+  move(ctx) {
+    this.pos[0] += this.vel[0];
+    this.pos[1] += this.vel[1];
   }
 
 }
