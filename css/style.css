@@ -1,10 +1,21 @@
+html {
+  background-color: #040926;
+}
+
 h1 {
+  font: 400 32px 'Gugi', cursive;
   text-align: center;
-  margin: 10px 0;
+  margin: 10px 0 0;
+  color: #C97B84;
 }
 
 canvas {
   display: block;
-  margin: 10px auto 0;
-  border: 1px solid black;
+  margin: 0 auto;
+  background-color: #C97B84;
+  border: 4px solid #040926;
+  border-radius: 5px;
 }
+
+
+/* font-family: 'Gugi', cursive; */
