@@ -2,11 +2,11 @@
 
 import Asteroid from './asteroid.js';
 
-const DEFAULTS = {
-  DIM_X: 1000,
-  DIM_Y: 600,
-  NUM_ASTEROIDS: 8
-};
+// const DEFAULTS = {
+//   DIM_X: 1000,
+//   DIM_Y: 600,
+//   NUM_ASTEROIDS: 8
+// };
 
 class Game {
   constructor() {
@@ -15,7 +15,7 @@ class Game {
   }
 
   draw(ctx) {
-    ctx.clearRect(0, 0, DEFAULTS.DIM_X, DEFAULTS.DIM_Y);
+    ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
     this.asteroids.forEach(asteroid => asteroid.render(ctx));
   }
 
@@ -24,18 +24,22 @@ class Game {
   }
 
   addAsteroids() {
-    do {
+    while (this.asteroids.length < Game.NUM_ASTEROIDS) {
       let pos = this.randomPos();
       let rock = new Asteroid({pos});
       this.asteroids.push(rock);
-    } while (this.asteroids.length < DEFAULTS.NUM_ASTEROIDS);
+    }
   }
 
   randomPos() {
-    const x = Math.floor(Math.random() * (DEFAULTS.DIM_X + 1));
-    const y = Math.floor(Math.random() * (DEFAULTS.DIM_Y + 1));
+    const x = Math.floor(Math.random() * (Game.DIM_X + 1));
+    const y = Math.floor(Math.random() * (Game.DIM_Y + 1));
     return [x, y];
   }
 }
+
+Game.DIM_X = 1000;
+Game.DIM_Y = 600;
+Game.NUM_ASTEROIDS = 8;
 
 export default Game;
