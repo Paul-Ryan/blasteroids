@@ -3,7 +3,7 @@
 import Asteroid from './asteroid.js';
 
 const DEFAULTS = {
-  DIM_X: 800,
+  DIM_X: 1000,
   DIM_Y: 600,
   NUM_ASTEROIDS: 8
 };
