@@ -2,12 +2,6 @@
 
 import Asteroid from './asteroid.js';
 
-// const DEFAULTS = {
-//   DIM_X: 1000,
-//   DIM_Y: 600,
-//   NUM_ASTEROIDS: 8
-// };
-
 class Game {
   constructor() {
     this.asteroids = [];
@@ -26,7 +20,7 @@ class Game {
   addAsteroids() {
     while (this.asteroids.length < Game.NUM_ASTEROIDS) {
       let pos = this.randomPos();
-      let rock = new Asteroid({pos});
+      let rock = new Asteroid({pos, game: this});
       this.asteroids.push(rock);
     }
   }
@@ -35,6 +29,20 @@ class Game {
     const x = Math.floor(Math.random() * (Game.DIM_X + 1));
     const y = Math.floor(Math.random() * (Game.DIM_Y + 1));
     return [x, y];
+  }
+
+  wrapPos(pos) {
+    if (pos[0] < 0) {
+      pos[0] = Game.DIM_X;
+    } else if (pos[0] > Game.DIM_X) {
+      pos[0] = (pos[0] % Game.DIM_X);
+    }
+
+    if (pos[1] < 0) {
+      pos[1] = Game.DIM_Y;
+    } else if (pos[1] > Game.DIM_Y) {
+      pos[1] = (pos[1] % Game.DIM_Y);
+    }
   }
 }
 

@@ -5,6 +5,7 @@ class MovingObject {
     this.vel = options.vel;
     this.radius = options.radius;
     this.color = options.color;
+    this.game = options.game;
   }
 
   render(ctx) {
@@ -24,6 +25,7 @@ class MovingObject {
   }
 
   move(ctx) {
+    this.game.wrapPos(this.pos);
     this.pos[0] += this.vel[0];
     this.pos[1] += this.vel[1];
   }
