@@ -1,28 +1,50 @@
 // Game will be in charge of holding all of our moving objects. It will also contain the logic for iterating through these objects and calling their corresponding move methods.
 
 import Asteroid from './asteroid.js';
+import Ship from './ship.js';
 
 class Game {
   constructor() {
     this.asteroids = [];
+    this.ships = [];
+
     this.addAsteroids();
-  }
-
-  draw(ctx) {
-    ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
-    this.asteroids.forEach(asteroid => asteroid.render(ctx));
-  }
-
-  moveObjects(ctx) {
-    this.asteroids.forEach(asteroid => asteroid.move(ctx));
+    this.addShips();
   }
 
   addAsteroids() {
     while (this.asteroids.length < Game.NUM_ASTEROIDS) {
-      let pos = this.randomPos();
-      let rock = new Asteroid({pos, game: this});
+      let rock = new Asteroid({
+        pos: this.randomPos(),
+        game: this
+      });
+
       this.asteroids.push(rock);
     }
+  }
+
+  addShips() {
+    const ship = new Ship({
+      pos: [300, 300],
+      game: this
+    });
+    console.log(ship);
+    this.ships.push(ship);
+  }
+
+  allGameObjects() {
+    const objects = [].concat(this.asteroids, this.ships);
+    return objects;
+  }
+
+  draw(ctx) {
+    ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
+    const objects = this.allGameObjects();
+    objects.forEach(object => object.render(ctx));
+  }
+
+  moveObjects(ctx) {
+    this.asteroids.forEach(asteroid => asteroid.move(ctx));
   }
 
   checkCollisions() {
