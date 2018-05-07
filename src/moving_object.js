@@ -1,3 +1,4 @@
+import Util from './util.js';
 
 class MovingObject {
   constructor(options) {
@@ -6,6 +7,11 @@ class MovingObject {
     this.radius = options.radius;
     this.color = options.color;
     this.game = options.game;
+  }
+
+  isCollidedWith(otherObject) {
+    const size = this.radius + otherObject.radius;
+    return Util.distance(this, otherObject) < size;
   }
 
   render(ctx) {

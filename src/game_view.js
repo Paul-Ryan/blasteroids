@@ -8,7 +8,7 @@ class GameView {
 
   start() {
     setInterval(() => {
-      this.game.moveObjects(this.ctx);
+      this.game.step(this.ctx);
       this.game.draw(this.ctx);
     }, 20);
   }

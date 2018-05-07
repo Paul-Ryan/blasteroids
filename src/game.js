@@ -25,10 +25,24 @@ class Game {
     }
   }
 
+  checkCollisions() {
+    for (let i = 0; i < this.asteroids.length; i++) {
+      for (let j = 0; j < this.asteroids.length; j++) {
+        if (i === j) continue;
+        if (this.asteroids[i].isCollidedWith(this.asteroids[j])) console.log("colission!");
+      }
+    }
+  }
+
   randomPos() {
     const x = Math.floor(Math.random() * (Game.DIM_X + 1));
     const y = Math.floor(Math.random() * (Game.DIM_Y + 1));
     return [x, y];
+  }
+
+  step(ctx) {
+    this.moveObjects(ctx);
+    this.checkCollisions();
   }
 
   wrapPos(pos) {
@@ -48,6 +62,6 @@ class Game {
 
 Game.DIM_X = 1000;
 Game.DIM_Y = 600;
-Game.NUM_ASTEROIDS = 8;
+Game.NUM_ASTEROIDS = 4;
 
 export default Game;
