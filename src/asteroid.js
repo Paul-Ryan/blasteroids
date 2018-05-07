@@ -3,8 +3,8 @@ import Util from './util.js';
 
 const DEFAULTS = {
   COLOR: "#7D2E68",
-  RADIUS: 40,
-  SPEED: 10
+  RADIUS: 30,
+  SPEED: 8
 };
 
 class Asteroid extends MovingObject {

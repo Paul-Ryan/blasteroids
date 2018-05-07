@@ -29,7 +29,12 @@ class Game {
     for (let i = 0; i < this.asteroids.length; i++) {
       for (let j = 0; j < this.asteroids.length; j++) {
         if (i === j) continue;
-        if (this.asteroids[i].isCollidedWith(this.asteroids[j])) console.log("colission!");
+        if (this.asteroids[i].isCollidedWith(this.asteroids[j])) {
+            let asteroid1 = this.asteroids[i];
+            let asteroid2 = this.asteroids[j];
+            this.remove(asteroid1);
+            this.remove(asteroid2);
+        }
       }
     }
   }
@@ -38,6 +43,11 @@ class Game {
     const x = Math.floor(Math.random() * (Game.DIM_X + 1));
     const y = Math.floor(Math.random() * (Game.DIM_Y + 1));
     return [x, y];
+  }
+
+  remove(asteroid) {
+    const idx = this.asteroids.indexOf(asteroid);
+    if (idx !== -1) this.asteroids.splice(idx, 1);
   }
 
   step(ctx) {
@@ -62,6 +72,6 @@ class Game {
 
 Game.DIM_X = 1000;
 Game.DIM_Y = 600;
-Game.NUM_ASTEROIDS = 4;
+Game.NUM_ASTEROIDS = 6;
 
 export default Game;
