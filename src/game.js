@@ -25,16 +25,19 @@ class Game {
 
   addShips() {
     const ship = new Ship({
-      pos: [300, 300],
+      pos: this.center(),
       game: this
     });
-    console.log(ship);
     this.ships.push(ship);
   }
 
   allGameObjects() {
     const objects = [].concat(this.asteroids, this.ships);
     return objects;
+  }
+
+  center() {
+    return [Game.DIM_X / 2, Game.DIM_Y / 2];
   }
 
   draw(ctx) {
@@ -44,18 +47,22 @@ class Game {
   }
 
   moveObjects(ctx) {
-    this.asteroids.forEach(asteroid => asteroid.move(ctx));
+    const objects = this.allGameObjects();
+    objects.forEach(object => object.move(ctx));
   }
 
   checkCollisions() {
-    for (let i = 0; i < this.asteroids.length; i++) {
-      for (let j = 0; j < this.asteroids.length; j++) {
+    const objects = this.allGameObjects();
+    // console.log(objects.length);
+    for (let i = 0; i < objects.length; i++) {
+      for (let j = 0; j < objects.length; j++) {
         if (i === j) continue;
-        if (this.asteroids[i].isCollidedWith(this.asteroids[j])) {
-            let asteroid1 = this.asteroids[i];
-            let asteroid2 = this.asteroids[j];
-            this.remove(asteroid1);
-            this.remove(asteroid2);
+
+        let object1 = objects[i];
+        let object2 = objects[j];
+
+        if (object1.isCollidedWith(object2)) {
+          object1.collideWith(object2);
         }
       }
     }
@@ -67,9 +74,14 @@ class Game {
     return [x, y];
   }
 
-  remove(asteroid) {
-    const idx = this.asteroids.indexOf(asteroid);
-    if (idx !== -1) this.asteroids.splice(idx, 1);
+  remove(gameObject) {
+    if (gameObject instanceof Asteroid) {
+      const idx = this.asteroids.indexOf(gameObject);
+      if (idx !== -1) this.asteroids.splice(idx, 1);
+    } else if (gameObject instanceof Ship) {
+      const idx = this.ships.indexOf(gameObject);
+      if (idx !== -1) this.ships.splice(idx, 1);
+    }
   }
 
   step(ctx) {
@@ -94,6 +106,6 @@ class Game {
 
 Game.DIM_X = 1000;
 Game.DIM_Y = 600;
-Game.NUM_ASTEROIDS = 6;
+Game.NUM_ASTEROIDS = 10;
 
 export default Game;

@@ -14,6 +14,10 @@ class MovingObject {
     return Util.distance(this, otherObject) < size;
   }
 
+  collideWith(otherObject) {
+    // default is to do nothing
+  }
+
   render(ctx) {
     ctx.fillStyle = this.color;
     ctx.beginPath();

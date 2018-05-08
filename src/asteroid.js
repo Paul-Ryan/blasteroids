@@ -1,4 +1,5 @@
 import MovingObject from './moving_object.js';
+import Ship from './ship.js';
 import Util from './util.js';
 
 const DEFAULTS = {
@@ -14,6 +15,13 @@ class Asteroid extends MovingObject {
     this.radius = DEFAULTS.RADIUS;
     this.vel = options.vel || Util.randomVec(DEFAULTS.SPEED);
   }
+
+  collideWith(otherObject) {
+    if (otherObject instanceof Ship) {
+      otherObject.respawn();
+    }
+  }
+
 }
 
 export default Asteroid;
