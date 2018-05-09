@@ -9,7 +9,7 @@ class Game {
     this.ships = [];
 
     this.addAsteroids();
-    this.addShips();
+    // this.addShips();
   }
 
   addAsteroids() {
@@ -28,7 +28,10 @@ class Game {
       pos: this.center(),
       game: this
     });
+
     this.ships.push(ship);
+
+    return ship;
   }
 
   allGameObjects() {
@@ -40,6 +43,7 @@ class Game {
     return [Game.DIM_X / 2, Game.DIM_Y / 2];
   }
 
+  // investigate fill rect
   draw(ctx) {
     ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
     const objects = this.allGameObjects();
@@ -53,7 +57,6 @@ class Game {
 
   checkCollisions() {
     const objects = this.allGameObjects();
-    // console.log(objects.length);
     for (let i = 0; i < objects.length; i++) {
       for (let j = 0; j < objects.length; j++) {
         if (i === j) continue;

@@ -14,6 +14,10 @@ class Ship extends MovingObject {
     this.vel = DEFAULTS.VELOCITY;
   }
 
+  move(impulse) {
+    // console.log(impulse);
+  }
+
   respawn() {
     this.pos = this.game.center();
     this.vel = [0, 0];
