@@ -14,8 +14,9 @@ class Ship extends MovingObject {
     this.vel = DEFAULTS.VELOCITY;
   }
 
-  move(impulse) {
-    // console.log(impulse);
+  power(impulse) {
+    this.vel[0] += impulse[0];
+    this.vel[1] += impulse[1];
   }
 
   respawn() {

@@ -10,14 +10,12 @@ class GameView {
   }
 
   bindKeyHandlers() {
-    // key('a', function(){ console.log('you pressed a!'); });
     for (var k in GameView.MOVES) {
       if (GameView.MOVES.hasOwnProperty(k)) {
         let impulse = GameView.MOVES[k];
+
         key(k, () => {
-          console.log('ship', this.ship);
-          console.log('impusle', impulse);
-          this.ship.move(impulse);
+          this.ship.power(impulse);
         });
       }
     }
@@ -36,8 +34,8 @@ class GameView {
 }
 
 GameView.MOVES = {
-  'up': [0, 1],
-  'down': [0, -1],
+  'up': [0, -1],
+  'down': [0, 1],
   'left': [-1, 0],
   'right': [1, 0]
 };
