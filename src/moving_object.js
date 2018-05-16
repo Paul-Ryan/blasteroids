@@ -11,7 +11,7 @@ class MovingObject {
 
   isCollidedWith(otherObject) {
     const size = this.radius + otherObject.radius;
-    return Util.distance(this, otherObject) < size;
+    return Util.objDistance(this, otherObject) < size;
   }
 
   collideWith(otherObject) {

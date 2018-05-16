@@ -14,18 +14,18 @@ class Ship extends MovingObject {
     this.color = DEFAULTS.COLOR;
     this.radius = DEFAULTS.RADIUS;
     this.vel = DEFAULTS.VELOCITY;
+
+    // this.fireBullet = this.fireBullet.bind(this);
   }
 
   fireBullet() {
-    // console.log(this.vel);
-    const direction = Util.normalize(this.vel);
+    const direction = Util.norm(this.vel);
+    console.log(direction);
 
-    // console.log('dir: ', direction);
     const bullet = new Bullet({
       vel: this.vel,
       pos: this.pos
     });
-
   }
 
   power(impulse) {
