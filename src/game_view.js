@@ -17,6 +17,10 @@ class GameView {
         key(k, () => {
           this.ship.power(impulse);
         });
+
+        key('space', () => {
+          this.ship.fireBullet();
+        });
       }
     }
   }

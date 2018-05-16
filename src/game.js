@@ -7,9 +7,10 @@ class Game {
   constructor() {
     this.asteroids = [];
     this.ships = [];
+    this.bullets = [];
 
     this.addAsteroids();
-    // this.addShips();
+    // this.addShips();  // GameView creates the ship
   }
 
   addAsteroids() {
