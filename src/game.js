@@ -2,15 +2,27 @@
 
 import Asteroid from './asteroid.js';
 import Ship from './ship.js';
+import Bullet from './bullet.js';
 
 class Game {
   constructor() {
     this.asteroids = [];
-    this.ships = [];
     this.bullets = [];
+    this.ships = [];
 
     this.addAsteroids();
-    // this.addShips();  // GameView creates the ship
+  }
+
+  add(obj) {
+    if (obj instanceof Ship) {
+      this.ships.push(obj);
+    } else if (obj instanceof Asteroid) {
+      this.asteroids.push(obj);
+    } else if (obj instanceof Bullet) {
+      this.bullets.push(obj);
+    } else {
+      throw new Error ("unknown object");
+    }
   }
 
   addAsteroids() {
@@ -20,7 +32,7 @@ class Game {
         game: this
       });
 
-      this.asteroids.push(rock);
+      this.add(rock);
     }
   }
 
@@ -36,8 +48,7 @@ class Game {
   }
 
   allGameObjects() {
-    const objects = [].concat(this.asteroids, this.ships);
-    return objects;
+    return [].concat(this.asteroids, this.ships, this.bullets);
   }
 
   center() {

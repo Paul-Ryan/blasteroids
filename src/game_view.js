@@ -10,21 +10,14 @@ class GameView {
   }
 
   bindKeyHandlers() {
-    for (var k in GameView.MOVES) {
-      if (GameView.MOVES.hasOwnProperty(k)) {
-        let impulse = GameView.MOVES[k];
-
-        key(k, () => {
-          this.ship.power(impulse);
-        });
-
-        key('space', () => {
-          this.ship.fireBullet();
-        });
-      }
-    }
+    const ship = this.ship;
+    Object.keys(GameView.MOVES).forEach((k) => {
+      const move = GameView.MOVES[k];
+      key(k, () => { ship.power(move); });
+    });
+    console.log(ship);
+    key("space", () => { ship.fireBullet(); });
   }
-
 
   start() {
     this.bindKeyHandlers();

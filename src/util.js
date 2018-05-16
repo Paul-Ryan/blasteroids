@@ -14,6 +14,19 @@ const Util = {
     return norm;
   },
 
+  distance(pos1, pos2) {
+    return Math.sqrt(
+      Math.pow(pos1[0] - pos2[0], 2) + Math.pow(pos1[1] - pos2[1], 2)
+    );
+  },
+  // Find the length of the vector.
+  norm(vec) {
+    // return Util.distance([0, 0], vec);
+    const dist = Util.distance([0, 0], vec);
+    const norm = [vec[0] / dist, vec[1] / dist];
+    return norm;
+  },
+
   length(vec) {
     return Math.sqrt((vec[0] * vec[0]) + (vec[1] + vec[1]));
   },
