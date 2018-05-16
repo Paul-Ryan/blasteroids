@@ -42,7 +42,7 @@ class Game {
       game: this
     });
 
-    this.ships.push(ship);
+    this.add(ship);
 
     return ship;
   }

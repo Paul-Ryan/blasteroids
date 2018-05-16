@@ -15,7 +15,7 @@ class GameView {
       const move = GameView.MOVES[k];
       key(k, () => { ship.power(move); });
     });
-    console.log(ship);
+
     key("space", () => { ship.fireBullet(); });
   }
 

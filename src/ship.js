@@ -20,6 +20,7 @@ class Ship extends MovingObject {
 
   fireBullet() {
     const direction = Util.norm(this.vel);
+    console.log(direction);
     const bullet = new Bullet({
       vel: this.vel,
       pos: this.pos
