@@ -20,11 +20,20 @@ class Ship extends MovingObject {
 
   fireBullet() {
     const direction = Util.norm(this.vel);
-    console.log(direction);
+    const baseSpeed = Util.scale(direction, Bullet.SPEED);
+
+    const modSpeed = [
+      this.vel[0] + baseSpeed[0],
+      this.vel[1] + baseSpeed[1]
+    ];
+
     const bullet = new Bullet({
-      vel: this.vel,
-      pos: this.pos
+      pos: this.pos,
+      vel: modSpeed,
+      game: this.game
     });
+
+    this.game.add(bullet);
   }
 
   power(impulse) {

@@ -9,18 +9,16 @@
 
 import MovingObject from './moving_object.js';
 
-const DEFAULTS = {
-  COLOR: "#251351",
-  RADIUS: 3,
-  SPEED: 10
-};
-
 class Bullet extends MovingObject {
   constructor(options) {
     super(options);
-    this.color = DEFAULTS.COLOR;
-    this.radius = DEFAULTS.RADIUS;
+    this.color = Bullet.COLOR;
+    this.radius = Bullet.RADIUS;
   }
 }
+
+Bullet.SPEED = 10;
+Bullet.COLOR = "#251351";
+Bullet.RADIUS = 4;
 
 export default Bullet;

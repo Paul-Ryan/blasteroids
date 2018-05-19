@@ -19,9 +19,9 @@ const Util = {
       Math.pow(pos1[0] - pos2[0], 2) + Math.pow(pos1[1] - pos2[1], 2)
     );
   },
+
   // Find the length of a bullet vector.
   norm(vec) {
-    console.log(vec[0]);
     if (vec[0] === 0 && vec[1] === 0) return [0, 0];
     const dist = Util.distance([0, 0], vec);
     const norm = [vec[0] / dist, vec[1] / dist];
