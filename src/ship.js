@@ -17,51 +17,54 @@ class Ship extends MovingObject {
     this.vel = DEFAULTS.VELOCITY;
   }
 
+  fireBullet() {
+    const direction = Util.norm(this.vel);
+    const baseSpeed = Util.scale(direction, Bullet.SPEED);
+
+    const modSpeed = [
+      this.vel[0] + baseSpeed[0],
+      this.vel[1] + baseSpeed[1]
+    ];
+
+    const bullet = new Bullet({
+      vel: modSpeed,
+      pos: this.pos,
+      game: this.game
+    });
+
+    console.log(bullet);
+
+    this.game.add(bullet);
+    console.log('addded');
+  }
+
+
   // fireBullet() {
-  //   const direction = Util.norm(this.vel);
-  //   const baseSpeed = Util.scale(direction, Bullet.SPEED);
+  //   const norm = OtherUtil.norm(this.vel);
   //
-  //   const modSpeed = [
-  //     this.vel[0] + baseSpeed[0],
-  //     this.vel[1] + baseSpeed[1]
+  //   if (norm === 0) {
+  //     // Can't fire unless moving.
+  //     return;
+  //   }
+  //
+  //   const relVel = OtherUtil.scale(
+  //     OtherUtil.dir(this.vel),
+  //     Bullet.SPEED
+  //   );
+  //
+  //   const bulletVel = [
+  //     relVel[0] + this.vel[0], relVel[1] + this.vel[1]
   //   ];
   //
   //   const bullet = new Bullet({
-  //     vel: modSpeed,
   //     pos: this.pos,
+  //     vel: bulletVel,
+  //     color: this.color,
   //     game: this.game
   //   });
   //
   //   this.game.add(bullet);
   // }
-
-
-  fireBullet() {
-    const norm = OtherUtil.norm(this.vel);
-
-    if (norm === 0) {
-      // Can't fire unless moving.
-      return;
-    }
-
-    const relVel = OtherUtil.scale(
-      OtherUtil.dir(this.vel),
-      Bullet.SPEED
-    );
-
-    const bulletVel = [
-      relVel[0] + this.vel[0], relVel[1] + this.vel[1]
-    ];
-
-    const bullet = new Bullet({
-      pos: this.pos,
-      vel: bulletVel,
-      color: this.color,
-      game: this.game
-    });
-
-    this.game.add(bullet);
-  }
 
   power(impulse) {
     this.vel[0] += impulse[0];

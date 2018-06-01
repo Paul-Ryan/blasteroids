@@ -94,6 +94,9 @@ class Game {
     if (gameObject instanceof Asteroid) {
       const idx = this.asteroids.indexOf(gameObject);
       if (idx !== -1) this.asteroids.splice(idx, 1);
+    } else if (gameObject instanceof Bullet) {
+      const idx = this.bullets.indexOf(gameObject);
+      if (idx !== -1) this.bullets.splice(idx, 1);
     } else if (gameObject instanceof Ship) {
       const idx = this.ships.indexOf(gameObject);
       if (idx !== -1) this.ships.splice(idx, 1);
@@ -122,6 +125,6 @@ class Game {
 
 Game.DIM_X = 1000;
 Game.DIM_Y = 600;
-Game.NUM_ASTEROIDS = 0;
+Game.NUM_ASTEROIDS = 2;
 
 export default Game;

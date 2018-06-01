@@ -7,6 +7,7 @@ class MovingObject {
     this.radius = options.radius;
     this.color = options.color;
     this.game = options.game;
+    this.Wraps = true;
   }
 
   isCollidedWith(otherObject) {
