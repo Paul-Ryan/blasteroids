@@ -10,22 +10,32 @@ class GameView {
   }
 
   bindKeyHandlers() {
-    const ship = this.ship;
-    Object.keys(GameView.MOVES).forEach((k) => {
-      const move = GameView.MOVES[k];
-      key(k, () => { ship.power(move); });
-    });
+  const ship = this.ship;
 
-    key("space", () => { ship.fireBullet(); });
-  }
+  Object.keys(GameView.MOVES).forEach((k) => {
+    const move = GameView.MOVES[k];
+    key(k, () => { ship.power(move); });
+  });
+
+  key("space", () => { ship.fireBullet(); });
+}
 
   start() {
     this.bindKeyHandlers();
+    this.lastTime = 0;
+    // start the animation
+    requestAnimationFrame(this.animate.bind(this));
+  }
 
-    setInterval(() => {
-      this.game.step(this.ctx);
-      this.game.draw(this.ctx);
-    }, 20);
+  animate(time) {
+    const timeDelta = time - this.lastTime;
+
+    this.game.step(timeDelta);
+    this.game.draw(this.ctx);
+    this.lastTime = time;
+
+    // every call to animate requests causes another call to animate
+    requestAnimationFrame(this.animate.bind(this));
   }
 
 }

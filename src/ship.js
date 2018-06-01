@@ -1,6 +1,7 @@
 import MovingObject from './moving_object.js';
 import Bullet from './bullet.js';
 import Util from './util.js';
+import OtherUtil from './other_util.js';
 
 const DEFAULTS = {
   COLOR: "#251351",
@@ -14,22 +15,48 @@ class Ship extends MovingObject {
     this.color = DEFAULTS.COLOR;
     this.radius = DEFAULTS.RADIUS;
     this.vel = DEFAULTS.VELOCITY;
-
-    // this.fireBullet = this.fireBullet.bind(this);
   }
 
-  fireBullet() {
-    const direction = Util.norm(this.vel);
-    const baseSpeed = Util.scale(direction, Bullet.SPEED);
+  // fireBullet() {
+  //   const direction = Util.norm(this.vel);
+  //   const baseSpeed = Util.scale(direction, Bullet.SPEED);
+  //
+  //   const modSpeed = [
+  //     this.vel[0] + baseSpeed[0],
+  //     this.vel[1] + baseSpeed[1]
+  //   ];
+  //
+  //   const bullet = new Bullet({
+  //     vel: modSpeed,
+  //     pos: this.pos,
+  //     game: this.game
+  //   });
+  //
+  //   this.game.add(bullet);
+  // }
 
-    const modSpeed = [
-      this.vel[0] + baseSpeed[0],
-      this.vel[1] + baseSpeed[1]
+
+  fireBullet() {
+    const norm = OtherUtil.norm(this.vel);
+
+    if (norm === 0) {
+      // Can't fire unless moving.
+      return;
+    }
+
+    const relVel = OtherUtil.scale(
+      OtherUtil.dir(this.vel),
+      Bullet.SPEED
+    );
+
+    const bulletVel = [
+      relVel[0] + this.vel[0], relVel[1] + this.vel[1]
     ];
 
     const bullet = new Bullet({
-      pos: this.game.center(), //this.pos,
-      vel: modSpeed,
+      pos: this.pos,
+      vel: bulletVel,
+      color: this.color,
       game: this.game
     });
 

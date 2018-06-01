@@ -55,18 +55,6 @@ class Game {
     return [Game.DIM_X / 2, Game.DIM_Y / 2];
   }
 
-  // investigate fill rect
-  draw(ctx) {
-    ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
-    const objects = this.allGameObjects();
-    objects.forEach(object => object.render(ctx));
-  }
-
-  moveObjects(ctx) {
-    const objects = this.allGameObjects();
-    objects.forEach(object => object.move(ctx));
-  }
-
   checkCollisions() {
     const objects = this.allGameObjects();
     for (let i = 0; i < objects.length; i++) {
@@ -77,10 +65,23 @@ class Game {
         let object2 = objects[j];
 
         if (object1.isCollidedWith(object2)) {
-          object1.collideWith(object2);
+          const colission = object1.collideWith(object2);
+          if (colission) return;
         }
       }
     }
+  }
+
+  draw(ctx) {
+    ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
+    const objects = this.allGameObjects();
+    objects.forEach(object => object.render(ctx));
+  }
+
+  moveObjects(delta) {
+    this.allGameObjects().forEach((object) => {
+      object.move(delta);
+    });
   }
 
   randomPos() {
@@ -121,6 +122,6 @@ class Game {
 
 Game.DIM_X = 1000;
 Game.DIM_Y = 600;
-Game.NUM_ASTEROIDS = 6;
+Game.NUM_ASTEROIDS = 0;
 
 export default Game;

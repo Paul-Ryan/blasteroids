@@ -15,8 +15,11 @@ class Bullet extends MovingObject {
     this.color = Bullet.COLOR;
     this.radius = Bullet.RADIUS;
   }
-}
 
+  collideWith(otherObject) {
+    // default is to do nothing
+  }
+}
 Bullet.SPEED = 10;
 Bullet.COLOR = "#251351";
 Bullet.RADIUS = 4;
