@@ -28,7 +28,7 @@ class Ship extends MovingObject {
     ];
 
     const bullet = new Bullet({
-      pos: this.pos,
+      pos: this.game.center(), //this.pos,
       vel: modSpeed,
       game: this.game
     });
