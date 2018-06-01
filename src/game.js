@@ -20,6 +20,7 @@ class Game {
       this.asteroids.push(obj);
     } else if (obj instanceof Bullet) {
       this.bullets.push(obj);
+      console.log(this.bullets);
     } else {
       throw new Error ("unknown object");
     }

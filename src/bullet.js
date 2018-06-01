@@ -18,6 +18,6 @@ class Bullet extends MovingObject {
 }
 Bullet.SPEED = 10;
 Bullet.COLOR = "#251351";
-Bullet.RADIUS = 4;
+Bullet.RADIUS = 40;
 
 export default Bullet;
