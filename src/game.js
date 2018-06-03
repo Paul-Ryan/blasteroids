@@ -76,6 +76,15 @@ class Game {
     objects.forEach(object => object.render(ctx));
   }
 
+  isOutOfBounds(pos) {
+    return (
+      pos[0] < 0 ||
+      pos[1] < 0 ||
+      pos[0] > Game.DIM_X ||
+      pos[1] > Game.DIM_Y
+    );
+  }
+
   moveObjects(delta) {
     this.allGameObjects().forEach((object) => {
       object.move(delta);
@@ -119,6 +128,7 @@ class Game {
       pos[1] = (pos[1] % Game.DIM_Y);
     }
   }
+
 }
 
 Game.DIM_X = 1000;

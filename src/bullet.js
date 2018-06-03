@@ -6,7 +6,7 @@ class Bullet extends MovingObject {
     super(options);
     this.color = Bullet.COLOR;
     this.radius = Bullet.RADIUS;
-    this.Wraps = false;
+    this.wraps = false;
   }
 
   collideWith(otherObject) {
