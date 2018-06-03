@@ -1,7 +1,6 @@
 import MovingObject from './moving_object.js';
 import Bullet from './bullet.js';
 import Util from './util.js';
-import OtherUtil from './other_util.js';
 
 const DEFAULTS = {
   COLOR: "#251351",

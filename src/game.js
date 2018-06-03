@@ -1,5 +1,3 @@
-// Game will be in charge of holding all of our moving objects. It will also contain the logic for iterating through these objects and calling their corresponding move methods.
-
 import Asteroid from './asteroid.js';
 import Ship from './ship.js';
 import Bullet from './bullet.js';
@@ -20,7 +18,6 @@ class Game {
       this.asteroids.push(obj);
     } else if (obj instanceof Bullet) {
       this.bullets.push(obj);
-      console.log(this.bullets);
     } else {
       throw new Error ("unknown object");
     }
