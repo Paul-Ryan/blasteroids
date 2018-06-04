@@ -15,7 +15,6 @@ class PVector {
   }
 
   limit(maxVal) {
-    // console.log(this.magnitude());
     if (this.magnitude() > maxVal) {
       this.normalize();
       this.scale(maxVal);

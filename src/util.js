@@ -37,6 +37,17 @@ const Util = {
     return Util.scale([Math.sin(deg), Math.cos(deg)], length);
   },
 
+  randomAcc() {
+    const xVel = Math.random()*(0.5);
+    const yVel = Math.random()*(0.5);
+    let acc = [xVel, yVel];
+
+    for(let i = 0; i < acc.length; i++) {
+      if (Math.random() >= 0.5) acc[i] = acc[i] * -1;
+    }
+
+    return acc;
+  },
   // Scale the length of a vector by the given amount.
   scale(vec, m) {
     return [vec[0] * m, vec[1] * m];

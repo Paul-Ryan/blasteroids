@@ -5,13 +5,13 @@ class MovingObject {
   constructor(options) {
     this.pos = options.pos;
     this.vel = options.vel || new PVector(0, 0);
-    this.acc = options.acc || new PVector(-0.001, 0.01);
+    this.acc = options.acc || new PVector(...Util.randomAcc());
 
     this.radius = options.radius;
     this.color = options.color;
     this.game = options.game;
     this.wraps = true;
-    this.maxSpeed = 3;
+    this.maxSpeed = 10;
   }
 
   collideWith(otherObject) {
@@ -33,11 +33,10 @@ class MovingObject {
           this.game.remove(this);
         }
       }
-
     this.vel.add(this.acc);
     this.vel.limit(this.maxSpeed);
+    // add velScale later
     this.pos.add(this.vel);
-    // console.log(this.vel);
   }
 
 
