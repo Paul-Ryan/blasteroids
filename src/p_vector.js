@@ -14,6 +14,14 @@ class PVector {
     this.y /= scalar;
   }
 
+  limit(maxVal) {
+    // console.log(this.magnitude());
+    if (this.magnitude() > maxVal) {
+      this.normalize();
+      this.scale(maxVal);
+    }
+  }
+
   magnitude() {
     return Math.sqrt(this.x*this.x + this.y*this.y);
   }
@@ -37,20 +45,4 @@ class PVector {
 
 }
 
-// testing
-
-const vec1 = new PVector(1, 1);
-const vec2 = new PVector(3, 3);
-const vec3 = new PVector(3, 4);
-
-console.log(vec1);
-console.log(vec3);
-
-console.log(vec1.magnitude());
-console.log(vec3.magnitude());
-
-vec1.normalize();
-vec3.normalize();
-
-console.log(vec1);
-console.log(vec3);
+export default PVector;

@@ -1,13 +1,17 @@
 import Util from './util.js';
+import PVector from './p_vector.js';
 
 class MovingObject {
   constructor(options) {
     this.pos = options.pos;
-    this.vel = options.vel;
+    this.vel = options.vel || new PVector(0, 0);
+    this.acc = options.acc || new PVector(-0.001, 0.01);
+
     this.radius = options.radius;
     this.color = options.color;
     this.game = options.game;
     this.wraps = true;
+    this.maxSpeed = 3;
   }
 
   collideWith(otherObject) {
@@ -19,27 +23,8 @@ class MovingObject {
     return Util.objDistance(this, otherObject) < size;
   }
 
-  move(ctx) {
-    if (this.game.isOutOfBounds(this.pos)) {
-      if (this.wraps) {
-        this.game.wrapPos(this.pos);
-      } else {
-        this.game.remove(this);
-      }
-    }
-      this.pos[0] += this.vel[0];
-      this.pos[1] += this.vel[1];
-  }
-
-
   move(timeDelta) {
-    // timeDelta is number of milliseconds since last move
-    // if the computer is busy the time delta will be larger
-    // in this case the MovingObject should move farther in this frame
-    // velocity of object is how far it should move in 1/60th of a second
-    const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,
-      offsetX = this.vel[0] * velocityScale,
-      offsetY = this.vel[1] * velocityScale;
+    const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA;
 
       if (this.game.isOutOfBounds(this.pos)) {
         if (this.wraps) {
@@ -49,16 +34,40 @@ class MovingObject {
         }
       }
 
-      this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
+    this.vel.add(this.acc);
+    this.vel.limit(this.maxSpeed);
+    this.pos.add(this.vel);
+    // console.log(this.vel);
   }
+
+
+  // move(timeDelta) {
+  //   // timeDelta is number of milliseconds since last move
+  //   // if the computer is busy the time delta will be larger
+  //   // in this case the MovingObject should move farther in this frame
+  //   // velocity of object is how far it should move in 1/60th of a second
+  //   const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,
+  //     offsetX = this.vel[0] * velocityScale,
+  //     offsetY = this.vel[1] * velocityScale;
+  //
+  //     if (this.game.isOutOfBounds(this.pos)) {
+  //       if (this.wraps) {
+  //         this.game.wrapPos(this.pos);
+  //       } else {
+  //         this.game.remove(this);
+  //       }
+  //     }
+  //
+  //     this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
+  // }
 
   render(ctx) {
     ctx.fillStyle = this.color;
     ctx.beginPath();
 
     ctx.arc(
-      this.pos[0],
-      this.pos[1],
+      this.pos.y,
+      this.pos.y,
       this.radius,
       0,
       2 * Math.PI,

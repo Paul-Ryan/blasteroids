@@ -1,6 +1,7 @@
 import Asteroid from './asteroid.js';
 import Ship from './ship.js';
 import Bullet from './bullet.js';
+import PVector from './p_vector.js';
 
 class Game {
   constructor() {
@@ -26,7 +27,7 @@ class Game {
   addAsteroids() {
     while (this.asteroids.length < Game.NUM_ASTEROIDS) {
       let rock = new Asteroid({
-        pos: this.randomPos(),
+        pos: new PVector(...this.randomPos()),
         game: this
       });
 
@@ -78,10 +79,10 @@ class Game {
 
   isOutOfBounds(pos) {
     return (
-      pos[0] < 0 ||
-      pos[1] < 0 ||
-      pos[0] > Game.DIM_X ||
-      pos[1] > Game.DIM_Y
+      pos.x < 0 ||
+      pos.y < 0 ||
+      pos.x > Game.DIM_X ||
+      pos.y > Game.DIM_Y
     );
   }
 
@@ -116,16 +117,16 @@ class Game {
   }
 
   wrapPos(pos) {
-    if (pos[0] < 0) {
-      pos[0] = Game.DIM_X;
-    } else if (pos[0] > Game.DIM_X) {
-      pos[0] = (pos[0] % Game.DIM_X);
+    if (pos.x < 0) {
+      pos.x = Game.DIM_X;
+    } else if (pos.x > Game.DIM_X) {
+      pos.x = (pos.x % Game.DIM_X);
     }
 
-    if (pos[1] < 0) {
-      pos[1] = Game.DIM_Y;
-    } else if (pos[1] > Game.DIM_Y) {
-      pos[1] = (pos[1] % Game.DIM_Y);
+    if (pos.y < 0) {
+      pos.y = Game.DIM_Y;
+    } else if (pos.y > Game.DIM_Y) {
+      pos.y = (pos.y % Game.DIM_Y);
     }
   }
 
@@ -133,6 +134,6 @@ class Game {
 
 Game.DIM_X = 1000;
 Game.DIM_Y = 600;
-Game.NUM_ASTEROIDS = 8;
+Game.NUM_ASTEROIDS = 1;
 
 export default Game;

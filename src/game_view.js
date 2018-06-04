@@ -5,7 +5,8 @@ class GameView {
   constructor(game, ctx) {
     this.game = game;
     this.ctx = ctx;
-    this.ship = this.game.addShips();
+    // remove ship while adding vectors
+    // this.ship = this.game.addShips();
   }
 
   bindKeyHandlers() {

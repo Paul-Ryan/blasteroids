@@ -1,6 +1,7 @@
 import MovingObject from './moving_object.js';
 import Ship from './ship.js';
 import Util from './util.js';
+import PVector from './p_vector.js';
 
 const DEFAULTS = {
   COLOR: "#7D2E68",
@@ -13,7 +14,6 @@ class Asteroid extends MovingObject {
     super(options);
     this.color = DEFAULTS.COLOR;
     this.radius = DEFAULTS.RADIUS;
-    this.vel = options.vel || Util.randomVec(DEFAULTS.SPEED);
   }
 
   collideWith(otherObject) {
