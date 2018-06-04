@@ -133,6 +133,6 @@ class Game {
 
 Game.DIM_X = 1000;
 Game.DIM_Y = 600;
-Game.NUM_ASTEROIDS = 2;
+Game.NUM_ASTEROIDS = 8;
 
 export default Game;
